@@ -126,6 +126,5 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'users.CustomUser'
 STATIC_URL = '/static/'
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
-'users.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
