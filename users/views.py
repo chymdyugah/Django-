@@ -1,9 +1,8 @@
 from django.shortcuts import render,redirect
 from users.forms import RegisterForm,LoginForm
-from users.backends import EmailBackend as em
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
@@ -29,11 +28,11 @@ def user_login(request):
         form = LoginForm(request.POST)
         uname = request.POST['username']
         pwd = request.POST['password']
-        user = em.authenticate(username=uname,password=pwd)
+        user = authenticate(username=uname,password=pwd)
         print(user)
         if user is not None:
             if user.is_active==True:
-                k=login(request,user,backend='django.contrib.auth.backends.ModelBackend')
+                k=login(request,user)
                 print(user,k)
                 print('Successfull login')
                 return redirect ('/home')
